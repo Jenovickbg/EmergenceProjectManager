@@ -1,0 +1,116 @@
+<!-- filepath: c:\Users\congo\Desktop\EmergenceProjectManager\templates\projet.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Projet | Emergence AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'css/projet.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+      <div class="logo">
+         <img src="{% static 'img/logo.png' %}" alt="Profil">
+      </div>
+
+      <ul>
+        <li><a href="{% url 'home' %}">Accueil</a></li>
+         <li><a href="#" class="active">Projet</a></li>
+        <li><a href="{% url 'chatlive' %}">Chat live</a></li>
+        <li><a href="{% url 'apropos' %}">A propos</a></li>
+       
+      </ul>
+
+      <div class="profile">
+        Profil
+        <img src="{% static 'img/inconu profil.jpg' %}" alt="Profil">
+      </div>
+    </nav>
+
+    <!-- PAGE PROJET -->
+    <main>
+      <h2>📁 Gestion des Projets</h2>
+
+      <div class="button-group">
+        <button class="btn-view" onclick="toggleProjects()">Voir les projets envoyés</button>
+        <button class="btn-submit" onclick="toggleForm()">Envoyer un projet</button>
+      </div>
+
+      <!-- Liste des projets -->
+      <div id="project-list" class="project-list">
+        <div class="project-item">
+          <strong>Projet : Transformation Digitale</strong><br>
+          Fichier : projet_digital.pdf<br>
+          <span class="edit-link">Modifier</span>
+        </div>
+        <div class="project-item">
+          <strong>Projet : Application mobile santé</strong><br>
+          Fichier : sante_app.pdf<br>
+          <span class="edit-link">Modifier</span>
+        </div>
+      </div>
+
+      <!-- Formulaire d'envoi -->
+     <!-- ...existing code... -->
+<div id="form-container" class="form-container">
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="nom">Nom & Prénom</label>
+    <input type="text" id="nom" name="nom" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="telephone">Téléphone</label>
+    <input type="tel" id="telephone" name="telephone" required>
+
+    <label for="intitule">Intitulé du projet</label>
+    <textarea id="intitule" name="intitule" rows="3" required></textarea>
+
+    <label for="fichier">Uploader le fichier PDF du projet</label>
+    <input type="file" id="fichier" name="fichier" accept=".pdf" required>
+
+    <input type="submit" value="Soumettre le projet">
+  </form>
+  {% if success %}
+    <p style="color:green;">Projet soumis avec succès !</p>
+  {% endif %}
+</div>
+<!-- ...existing code... -->
+    </main>
+
+    <!-- FOOTER FIXÉ EN BAS -->
+    <footer>
+      © Emergence  <br>
+      concession SAFRICAS/ Rond point socimat 14, Avenue sergentMOKE - Kinshasa Gombe <br>
+      info@emergence-rdc.com <br>
+      +243 999 90 722 
+      +243 810 337 662 <br>
+      <a href="http://">www.emergence-rdc.com</a>
+       <br>
+    </footer>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    function toggleForm() {
+      const form = document.getElementById('form-container');
+      const list = document.getElementById('project-list');
+      form.style.display = form.style.display === 'block' ? 'none' : 'block';
+      list.style.display = 'none';
+    }
+
+    function toggleProjects() {
+      const list = document.getElementById('project-list');
+      const form = document.getElementById('form-container');
+      list.style.display = list.style.display === 'block' ? 'none' : 'block';
+      form.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

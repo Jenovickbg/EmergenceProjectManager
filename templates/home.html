@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accueil | Emergence AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'css/home.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="{% static 'img/logo.png' %}" alt="Profil">
+      </div>
+
+      <ul><li><a href="#" class="active">Accueil</a></li>
+        <li><a href="{% url 'projet' %}">Projet</a></li>
+<li><a href="{% url 'chatlive' %}">Chat live</a></li>
+<li><a href="{% url 'apropos' %}">A propos</a></li>
+
+      </ul>
+
+      <div class="profile">
+        Profil
+        <img src="{% static 'img/inconu profil.jpg' %}" alt="Profil">
+      </div>
+    </nav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main>
+      <h1>Bienvenue chez Emergence SARL</h1>
+      <p>
+       Emergence SARL est une société de droit congoolais qui regroupe diverses compétences
+        et est spécialisé dans les services aux entreprises 
+      </p>
+
+      <div class="structures">
+        <div class="structure-box">
+          <h3>Facilitation d'Affaires - Consulting</h3>
+          <p>audit, expertise comptable, organisation management, assurences.</p>
+        </div>
+        <div class="structure-box">
+          <h3>Incubateur d'entreprises</h3>
+          <p>financements projet, Prise de participation</p>
+        </div>
+        <div class="structure-box">
+          <h3>Sous-traitance</h3>
+          <p>Placement, Formation, fourniture,d'equipements & matériels </p>
+        </div>
+        <div class="structure-box">
+          <h3>Nouvelles technologies</h3>
+          <p>Biométrie, Digitalisation, Numéruique.</p>
+        </div>
+      </div>
+      <div id="login-modal" style="display:none;">
+  <!-- Ici, mets ton formulaire de connexion/inscription -->
+  <div class="modal-content">
+    <h2>Connexion requise</h2>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+      <input type="password" name="password" placeholder="Mot de passe" required>
+      <button type="submit">Se connecter</button>
+    </form>
+    <a href="{% url 'register' %}">Créer un compte</a>
+    <button onclick="document.getElementById('login-modal').style.display='none'">Fermer</button>
+  </div>
+</div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      © Emergence  <br>
+      concession SAFRICAS/ Rond point
+      <script>
+  // Variable Django passée dans le template
+  const isAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.navbar a, .profile').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        if (!isAuthenticated && !el.classList.contains('active')) {
+          e.preventDefault();
+          document.getElementById('login-modal').style.display = 'block';
+        }
+      });
+    });
+  });
+</script>

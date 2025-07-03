@@ -1,0 +1,89 @@
+<!-- filepath: c:\Users\congo\Desktop\EmergenceProjectManager\templates\chatlive.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Live | Emergence AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'css/chatLive.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+      <div class="logo">
+         <img src="{% static 'img/logo.png' %}" alt="Profil">
+      </div>
+
+      <ul>
+        <li><a href="{% url 'home' %}">Accueil</a></li>
+                <li><a href="{% url 'projet' %}">Projet</a></li>
+        <li><a href="#" class="active">Chat live</a></li>
+        <li><a href="{% url 'apropos' %}">À propos</a></li>
+
+      </ul>
+
+      <div class="profile">
+        Profil
+        <img src="{% static 'img/inconu profil.jpg' %}" alt="Profil">
+      </div>
+    </nav>
+
+    <!-- ZONE DE CHAT -->
+    <main>
+      <h2> Discuter avec Emergence </h2>
+
+      <div class="chat-box" id="chat-box">
+        <div class="message admin">Bonjour, comment pouvons-nous vous aider ?</div>
+        <div class="message user">J’aimerais soumettre un nouveau projet IA.</div>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Écrivez votre message...">
+        <button onclick="sendMessage()">Envoyer</button>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+       © Emergence  <br>
+      concession SAFRICAS/ Rond point socimat 14, Avenue sergentMOKE - Kinshasa Gombe <br>
+      info@emergence-rdc.com <br>
+      +243 99990 722 
+      +243 810 337 662 <br>
+      <a href="http://">www.emergence-rdc.com</a>
+       <br>
+    </footer>
+
+  </div>
+
+  <!-- Script JS de chat simple -->
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("message-input");
+      const text = input.value.trim();
+      if (text === "") return;
+
+      const chatBox = document.getElementById("chat-box");
+
+      const message = document.createElement("div");
+      message.className = "message user";
+      message.textContent = text;
+      chatBox.appendChild(message);
+      input.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Simuler une réponse automatique
+      setTimeout(() => {
+        const reply = document.createElement("div");
+        reply.className = "message admin";
+        reply.textContent = "Merci pour votre message. Un agent va vous répondre sous peu.";
+        chatBox.appendChild(reply);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

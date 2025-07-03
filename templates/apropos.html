@@ -1,0 +1,73 @@
+<!-- filepath: c:\Users\congo\Desktop\EmergenceProjectManager\templates\apropos.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>À propos | Emergence AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'css/apropos.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+      <div class="logo">
+         <img src="{% static 'img/logo.png' %}" alt="Profil">
+      </div>
+
+      <ul>
+        <li><a href="{% url 'home' %}">Accueil</a></li>
+         <li><a href="{% url 'projet' %}">Projet</a></li>
+        <li><a href="{% url 'chatlive' %}">Chat live</a></li>
+        <li><a href="#" class="active">À propos</a></li>
+       
+      </ul>
+
+      <div class="profile">
+        Profil
+        <img src="{% static 'img/inconu profil.jpg' %}" alt="Profil">
+      </div>
+    </nav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main>
+      <h1>À propos de nous</h1>
+      <p>
+        Notre objectif est de vous accompagner de manière unique sur un portefeuille large et diversifié des projets. <br>
+         Le recours à la sous-traitance est devenu une pratique largement répandue dans les moyennes et grandes entreprises. <br>
+         Emergence SARL, mobilise toutes les ressources nécessaires afin de permettre à ses clients de se recentrer sur leur cœur des métiers. 
+      </p>
+
+      <div class="core-values">
+        <div class="value-box">
+          <h3>Innovation</h3>
+          <p>Nous intégrons les technologies de pointe pour proposer des solutions nouvelles et efficaces.</p>
+        </div>
+        <div class="value-box">
+          <h3>Accessibilité</h3>
+          <p>Nos solutions sont pensées pour être simples, abordables et adaptées au contexte local.</p>
+        </div>
+        <div class="value-box">
+          <h3>Collaboration</h3>
+          <p>Nous croyons au travail d’équipe, à la co-création et au partenariat avec nos clients.</p>
+        </div>
+        
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      © Emergence  <br>
+      concession SAFRICAS/ Rond point socimat 14, Avenue sergentMOKE - Kinshasa Gombe <br>
+      info@emergence-rdc.com <br>
+      +243 999 90 722 
+      +243 810 337 662 <br>
+      <a href="http://">www.emergence-rdc.com</a>
+       <br> 
+    </footer>
+
+  </div>
+</body>
+</html>
