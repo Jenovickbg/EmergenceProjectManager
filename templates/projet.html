@@ -26,7 +26,11 @@
       </ul>
 
       <div class="profile">
-        Profil
+        {% if user.is_authenticated %}
+   <a href="{% url 'logout' %}"> {{ user.username }}</a>
+  {% else %}
+    Profil
+  {% endif %}
         <img src="{% static 'img/inconu profil.jpg' %}" alt="Profil">
       </div>
     </nav>
@@ -41,18 +45,18 @@
       </div>
 
       <!-- Liste des projets -->
-      <div id="project-list" class="project-list">
-        <div class="project-item">
-          <strong>Projet : Transformation Digitale</strong><br>
-          Fichier : projet_digital.pdf<br>
-          <span class="edit-link">Modifier</span>
-        </div>
-        <div class="project-item">
-          <strong>Projet : Application mobile santé</strong><br>
-          Fichier : sante_app.pdf<br>
-          <span class="edit-link">Modifier</span>
-        </div>
-      </div>
+     <div id="project-list" class="project-list">
+  {% for project in projects %}
+    <div class="project-item">
+      <strong>Projet : {{ project.intitule }}</strong><br>
+      Fichier : <a href="{{ project.fichier.url }}">{{ project.fichier.name|slice:"8:" }}</a><br>
+      <span class="edit-link">Modifier</span>
+    </div>
+  {% empty %}
+    <p>Aucun projet pour le moment.</p>
+  {% endfor %}
+</div>
+
 
       <!-- Formulaire d'envoi -->
      <!-- ...existing code... -->

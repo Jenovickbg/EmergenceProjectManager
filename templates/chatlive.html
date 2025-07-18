@@ -26,7 +26,11 @@
       </ul>
 
       <div class="profile">
-        Profil
+       {% if user.is_authenticated %}
+   <a href="{% url 'logout' %}"> {{ user.username }}</a>
+  {% else %}
+    Profil
+  {% endif %}
         <img src="{% static 'img/inconu profil.jpg' %}" alt="Profil">
       </div>
     </nav>
