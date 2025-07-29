@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>Admin Projets | Emergence AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/projet_admin.css' %}">
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h2>Emergence SARL</h2>
+  <a href="{% url 'admi' %}">Dashboard</a>
+  <a href="{% url 'projet_admi' %}" class="active">Projets</a>
+  <a href="{% url 'utilisateurs' %}">Utilisateurs</a>
+  <a href="{% url 'parametres' %}">Paramètres</a>
+  <a href="#" onclick="logout()">Déconnexion</a>
+</div>
+
+<!-- Main content -->
+<div class="main">
+  <!-- Topbar -->
+  <div class="topbar">
+    <input type="text" placeholder="Rechercher un projet...">
+    <div>
+      <span style="margin-right: 20px;">👤 Admin</span>
+    </div>
+  </div>
+
+  <!-- Content area -->
+  <div class="content">
+    <!-- Project Grid -->
+    <div class="projects">
+      {% for projet in projets %}
+      <div class="project-card"
+           data-statut="{{ projet.statut }}"
+           onclick="showDetails('{{ projet.titre }}', '{{ projet.date }}', '{{ projet.domaine }}', '{{ projet.statut }}')">
+        <strong>{{ projet.titre }}</strong><br>
+        Soumissionnaire : {{ projet.soumissionnaire }}<br>
+        Statut : {{ projet.statut }}
+      </div>
+      {% empty %}
+      <p>Aucun projet disponible pour le moment.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Détails du projet -->
+    <div class="project-details" id="detailsPanel">
+      <h3 id="proj-title">Détails du projet</h3>
+      <p><strong>Date :</strong> <span id="proj-date"></span></p>
+      <p><strong>Domaine :</strong> <span id="proj-domain"></span></p>
+      <p><strong>Statut :</strong> <span id="proj-status"></span></p>
+
+      <button class="analyze" onclick="alert('Analyse IA lancée')">Analyser avec IA</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showDetails(title, date, domain, status) {
+    document.getElementById("proj-title").textContent = title;
+    document.getElementById("proj-date").textContent = date;
+    document.getElementById("proj-domain").textContent = domain;
+    document.getElementById("proj-status").textContent = status;
+    document.getElementById("detailsPanel").style.display = "flex";
+  }
+</script>
+
+</body>
+</html>

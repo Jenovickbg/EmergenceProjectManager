@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   {% load static %}
+  <meta charset="UTF-8">
+  <title>Admin - Paramètres | Emergence SARL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/parametres.css' %}">
+</head>
+<body>
+
+
+  <div class="sidebar">
+    <h2>Emergence SARL</h2>
+    <a href="{% url 'admi' %}">Dashboard</a>
+    <a href="{% url 'projet_admi' %}">Projets</a>
+    <a href="{% url 'utilisateurs' %}">Utilisateurs</a>
+    <a href="#" class="active">Paramètres</a>
+    <a href="#" onclick="logout()">Déconnexion</a>
+  </div>
+
+  <div class="main">
+    <h1>Paramètres de l'administrateur</h1>
+
+    <section class="profile">
+      <h2>Profil</h2>
+      <div class="profile-info">
+        <img src="inconu profil.jpg" alt="Photo de profil">
+        <div>
+          <p><strong>Nom :</strong> Admin Principal</p>
+          <p><strong>Identifiant :</strong> admin@emergence.com</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="security">
+      <h2>Sécurité</h2>
+      <form>
+        <label>Nom complet
+          <input type="text" placeholder="Admin Principal">
+        </label>
+        <label>Nouveau mot de passe
+          <input type="password" placeholder="********">
+        </label>
+        <label>Confirmer mot de passe
+          <input type="password" placeholder="********">
+        </label>
+        <button type="submit">Mettre à jour</button>
+      </form>
+    </section>
+
+    <section class="preferences">
+      <h2>Préférences</h2>
+      <label><input type="checkbox"> Activer le mode sombre</label><br>
+      <label><input type="checkbox" checked> Recevoir les notifications email</label>
+    </section>
+
+    <section class="data">
+      <h2>Gestion des données</h2>
+      <button class="Soleil">Exporter les projets</button>
+      <button class="danger">Supprimer mon compte</button>
+    </section>
+  </div>
+
+ 
+</body>
+</html>

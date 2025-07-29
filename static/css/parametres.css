@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f5f7fb;
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #1a237e;
+  color: white;
+  padding: 30px 15px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  margin: 10px 0;
+  border-left: 4px solid transparent;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+  background: #3949ab;
+  border-left: 4px solid #C9A400;
+}
+
+.main {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+h1 {
+  color: #1a237e;
+  margin-bottom: 30px;
+}
+
+section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+section h2 {
+  color: #1a237e;
+  margin-top: 0;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-info img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #C9A400;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  margin-top: 10px;
+  background: #C9A400;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.preferences label {
+  display: block;
+  margin: 10px 0;
+}
+
+.data button {
+  padding: 10px 16px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.data button:first-child {
+  background: #1a237e;
+  color: white;
+}
+
+.data .danger {
+  background: crimson;
+  color: white;
+}
+.Soleil{
+    background-color: darkgreen;
+    color: thistle  ;
+}

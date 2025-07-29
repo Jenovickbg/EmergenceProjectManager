@@ -59,6 +59,14 @@
     .hidden {
       display: none;
     }
+    .error-message {
+      color: red;
+      margin: 10px 0;
+    }
+    .success-message {
+      color: green;
+      margin: 10px 0;
+    }
   </style>
 </head>
 <body>
@@ -121,7 +129,7 @@
           <!-- Formulaire Connexion -->
           <div id="login-form">
             <h2>Connexion requise</h2>
-            <form method="post" action="{% url 'login' %}">
+            <form method="post" action="{% url 'login' %}" id="loginForm">
               {% csrf_token %}
               <input type="text" name="username" placeholder="Nom d'utilisateur" required>
               <input type="password" name="password" placeholder="Mot de passe" required>
@@ -130,20 +138,11 @@
             <a href="#" id="show-register">Créer un compte</a><br>
             <button onclick="closeModal()">Fermer</button>
           </div>
-{% if messages %}
-  <ul>
-    {% for message in messages %}
-      <li style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
-        {{ message }}
-      </li>
-    {% endfor %}
-  </ul>
-{% endif %}
+
           <!-- Formulaire Inscription -->
           <div id="register-form" class="hidden">
             <h2>Créer un compte</h2>
-            <form method="post" action="{% url 'register' %}">
-
+            <form method="post" action="{% url 'register' %}" id="registerForm">
               {% csrf_token %}
               <input type="text" name="username" placeholder="Nom d'utilisateur" required>
               <input type="password" name="password1" placeholder="Mot de passe" required>
@@ -156,6 +155,20 @@
 
         </div>
       </div>
+
+      <!-- Messages Django -->
+      {% if messages %}
+        <div id="messages" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+          {% for message in messages %}
+            <div class="{% if message.tags == 'error' %}error-message{% else %}success-message{% endif %}" 
+                 style="background: {% if message.tags == 'error' %}#ffebee{% else %}#e8f5e8{% endif %}; 
+                        padding: 10px; margin: 5px 0; border-radius: 4px; border: 1px solid {% if message.tags == 'error' %}#f44336{% else %}#4caf50{% endif %};">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
     </main>
 
     <!-- FOOTER -->
@@ -181,7 +194,20 @@
       document.getElementById('register-form').classList.add('hidden');
     }
 
+    // Fonction pour masquer les messages après 5 secondes
+    function hideMessages() {
+      const messages = document.getElementById('messages');
+      if (messages) {
+        setTimeout(() => {
+          messages.style.display = 'none';
+        }, 5000);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+      // Masquer les messages après 5 secondes
+      hideMessages();
+
       // Si l'utilisateur clique sur un lien vers une autre page
       document.querySelectorAll('.navbar a').forEach(function(el) {
         el.addEventListener('click', function(e) {
@@ -213,6 +239,24 @@
         document.getElementById('register-form').classList.add('hidden');
         document.getElementById('login-form').classList.remove('hidden');
       });
+
+      // Gestion des formulaires pour s'assurer qu'ils sont soumis correctement
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+
+      if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+          // Laisser le formulaire se soumettre normalement
+          console.log('Soumission du formulaire de connexion');
+        });
+      }
+
+      if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+          // Laisser le formulaire se soumettre normalement
+          console.log('Soumission du formulaire d\'inscription');
+        });
+      }
     });
   </script>
 </body>

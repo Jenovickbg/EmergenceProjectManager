@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   {% load static %}
+  <meta charset="UTF-8">
+  <title>Admin - Utilisateurs | Emergence AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/utilisateurs.css' %}">
+</head>
+<body>
+ 
+
+  <div class="sidebar">
+    <h2>Emergence AI</h2>
+    <a href="{% url 'admi' %}">Dashboard</a>
+    <a href="{% url 'projet_admi' %}">Projets</a>
+    <a href="#" class="active">Utilisateurs</a>
+    <a href="{% url 'parametres' %}">Paramètres</a>
+    <a href="#" onclick="logout()">Déconnexion</a>
+  </div>
+
+  <div class="main">
+    <h1>Utilisateurs enregistrés</h1>
+
+    <div class="stats">
+      <div class="stat">
+        <h3>Total utilisateurs</h3>
+        <p>15</p>
+      </div>
+      <div class="stat">
+        <h3>Connectés maintenant</h3>
+        <p>3</p>
+      </div>
+    </div>
+
+    <button class="add-user">+ Ajouter un utilisateur</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Rôle</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jean Dupont</td>
+          <td>jean@exemple.com</td>
+          <td>Utilisateur</td>
+          <td>En ligne</td>
+          <td><button class="delete">Supprimer</button></td>
+        </tr>
+        <tr>
+          <td>Alice Martin</td>
+          <td>alice@exemple.com</td>
+          <td>Administrateur</td>
+          <td>Hors ligne</td>
+          <td><button class="delete">Supprimer</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+ 
+</body>
+</html>
